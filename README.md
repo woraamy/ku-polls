@@ -58,7 +58,7 @@ All project-related documents are in the [Project Wiki]
 
 - [Vision Statement](https://github.com/woraamy/ku-polls/wiki/Vision-Statement)
 - [Requirements]
-- [Development Plan]
+- [Development Plan](https://github.com/woraamy/ku-polls/wiki/Development-Plan)
 - [Iteration 1 Plan] and [Task Board]
 
 [django-tutorial]: https://docs.djangoproject.com/en/3.1/intro/tutorial01/
