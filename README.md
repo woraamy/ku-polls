@@ -56,7 +56,7 @@ Sample polls and users data are included.
 
 All project-related documents are in the [Project Wiki]
 
-- [Vision Statement]
+- [Vision Statement](https://github.com/woraamy/ku-polls/wiki/Vision-Statement)
 - [Requirements]
 - [Development Plan]
 - [Iteration 1 Plan] and [Task Board]
