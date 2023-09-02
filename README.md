@@ -9,11 +9,6 @@ A polls application for [Individual Software Process](https://cpske.github.io/IS
 
 Requires Python 3.8 or newer.  Required Python packages are listed in [requirements.txt](./requirements.txt). 
 
-## Install and Configure the Application
-
-See [Installation] in the project wiki.
-
-
 ## Running the Application
 
 1. Start the server in the virtual environment. 
@@ -45,19 +40,12 @@ See [Installation] in the project wiki.
    deactivate
    ```
 
-## Demo User Accounts
-
-Sample polls and users data are included. 
-
-* `demo1` password `Hackme1`
-* `demo2` password `Hackme2`
-
 ## Project Documents
 
 All project-related documents are in the [Project Wiki]
 
 - [Vision Statement](https://github.com/woraamy/ku-polls/wiki/Vision-Statement)
-- [Requirements]
+- [Requirements](https://github.com/woraamy/ku-polls/wiki/Requirements)
 - [Development Plan](https://github.com/woraamy/ku-polls/wiki/Development-Plan)
 - [Iteration 1 Plan](https://github.com/woraamy/ku-polls/wiki/Iteration-1-Plan) and [Task Board](https://github.com/users/woraamy/projects/2)
 
