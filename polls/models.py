@@ -7,7 +7,8 @@ from django.utils import timezone
 class Question(models.Model):
     """This class contains questions that will be shown on the web page."""
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', default=timezone.now())
+    end_date = models.DateTimeField('end date', null=True)
 
     def __str__(self):
         return self.question_text
@@ -15,6 +16,14 @@ class Question(models.Model):
     def was_published_recently(self):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
+
+    def is_published(self):
+        return self.pub_date <= timezone.now()
+
+    def can_vote(self):
+        if self.pub_date < timezone.now() < self.end_date or self.end_date is None:
+            return True
+        return False
 
 
 class Choice(models.Model):

@@ -7,14 +7,15 @@ from django.urls import reverse
 from .models import Question
 
 
-def create_question(question_text, days):
+def create_question(question_text, days, end_time=0):
     """
     Create a question with the given `question_text` and published the
     given number of `days` offset to now (negative for questions published
     in the past, positive for questions that have yet to be published).
     """
     time = timezone.now() + datetime.timedelta(days=days)
-    return Question.objects.create(question_text=question_text, pub_date=time)
+    time_end = timezone.now() + datetime.timedelta(days=end_time)
+    return Question.objects.create(question_text=question_text, pub_date=time, end_date=time_end)
 
 
 class QuestionIndexViewTests(TestCase):
@@ -71,3 +72,34 @@ class QuestionIndexViewTests(TestCase):
             response.context['latest_question_list'],
             [question2, question1],
         )
+
+    def test_future_pub_date(self):
+        """Cannot publish questions in the future"""
+        question = create_question(question_text='Future Question', days=5)
+        self.assertEqual(question.is_published(), False)
+
+    def test_present_pub_date(self):
+        """Can publish questions in the present"""
+        question = create_question(question_text='Present Question', days=0)
+        self.assertEqual(question.is_published(), True)
+
+    def test_past_pub_date(self):
+        """Can publish questions in the past"""
+        question = create_question(question_text='Past Question', days=0)
+        self.assertEqual(question.is_published(), True)
+
+    def test_can_vote(self):
+        """Test if method can_vote() returns true if the user votes during voting period"""
+        question = create_question(question_text='Question', days=0, end_time=1)
+        self.assertEqual(question.can_vote(), True)
+
+    def test_no_end_date(self):
+        """Test if method can_vote() returns true if there is no end_date"""
+        question = create_question(question_text='Question', days=7)
+        question.end_date = None
+        self.assertEqual(question.can_vote(), True)
+
+    def test_cannot_vote_after_end_date(self):
+        """Test if can_vote() returns False for questions that end_date has passed"""
+        question = create_question(question_text='Question', days=0, end_time=-5)
+        self.assertEqual(question.can_vote(), False)
