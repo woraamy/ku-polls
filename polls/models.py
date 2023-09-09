@@ -11,16 +11,20 @@ class Question(models.Model):
     end_date = models.DateTimeField('end date', null=True)
 
     def __str__(self):
+        """This class returns question text when asked for."""
         return self.question_text
 
     def was_published_recently(self):
+        """This method is used to check if the question was published recently."""
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
     def is_published(self):
+        """This method is used to check if the question is published or not."""
         return self.pub_date <= timezone.now()
 
     def can_vote(self):
+        """This method is used to check if the user can vote or not."""
         if self.pub_date < timezone.now() < self.end_date or self.end_date is None:
             return True
         return False
@@ -33,4 +37,5 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
 
     def __str__(self):
+        """This class returns choice test when asked for."""
         return self.choice_text
