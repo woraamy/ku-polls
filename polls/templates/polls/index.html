@@ -12,3 +12,10 @@
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
+{% if user.is_authenticated %}
+   Welcome back, {{ user.username }}
+{% else %}
+   Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+{% endif %}
+
