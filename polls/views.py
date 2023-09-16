@@ -6,7 +6,8 @@ from django.utils import timezone
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Question, Choice
-
+from django.contrib.auth.decorators import login_required
+from .models import Vote
 from .models import Choice, Question
 
 
@@ -49,11 +50,38 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
+@login_required
 def vote(request, question_id):
     """
     A function for voting and checking if the user voted or not
     """
     question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'error_message': "You didn't select a choice.",
+        })
+
+    if not question.can_vote():
+        messages.error(request, f"Poll number {question.id}"
+                                f"id not available to vote")
+        return redirect("polls:index")
+
+    this_user = request.user
+    try:
+        # find a vote for this user and this question
+        vote = Vote.objects.get(user=this_user, choice__question=question)
+        # update his vote
+        vote.choice = selected_choice
+        vote.save()
+    except Vote.DoesNotExist:
+        # no matching votes - create a new vote
+        vote = Vote(user=this_user, choice=selected_choice)
+        vote.save()
+        vote = Vote.objects.create(user=this_user, choice=selected_choice)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
@@ -81,3 +109,11 @@ def poll_detail(request, poll_id):
         messages.error(request, "Voting for this poll is not allowed.")
         return HttpResponseRedirect(reverse('polls:index'))
     return render(request, 'polls/detail.html', {'question': poll})
+
+
+# @login_required
+# def vote(request, question_id):
+#     """Vote for a choice on a question (poll)."""
+#     user = request.user
+#     if not user.is_authenticated:
+#         return redirect('login')
