@@ -1,0 +1,56 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$0ugt12nL2zHEf1y6RWOhk1$vL3/mSeoww1NU8dSJLajAb8PzWt2k3+8KLdp4ocy88g=",
+    "last_login": "2023-09-08T13:36:10.629Z",
+    "is_superuser": true,
+    "username": "amyworawalan",
+    "first_name": "",
+    "last_name": "",
+    "email": "worawalanc@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-09-08T13:35:41.905Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$9BynZwrNLfeMXAv99XV9s2$1h7m7JBB/QvqAOuPPjMtQjFxU6zNEyMv2jROQOn5Fd0=",
+    "last_login": "2023-09-16T15:14:15.802Z",
+    "is_superuser": false,
+    "username": "Harry",
+    "first_name": "Harry",
+    "last_name": "",
+    "email": "harry@hackeron.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-12T07:39:14.843Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$d8ycwPoH0SX2oKetxob7Av$YLpUSqM2VrBazzLXuojZ6XIM3g2vENpRIkendoTQgTo=",
+    "last_login": "2023-09-17T09:51:37.300Z",
+    "is_superuser": false,
+    "username": "Amy",
+    "first_name": "Amy",
+    "last_name": "",
+    "email": "amy@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-16T16:44:50.225Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
