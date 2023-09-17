@@ -44,7 +44,7 @@ class DetailView(generic.DetailView):
 
 class ResultsView(generic.DetailView):
     """
-    Redirect results.html
+    Redirect to results.html
     """
     model = Question
     template_name = 'polls/results.html'
@@ -56,64 +56,61 @@ def vote(request, question_id):
     A function for voting and checking if the user voted or not
     """
     question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-
-    except (KeyError, Choice.DoesNotExist):
-        return render(request, 'polls/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
+    this_user = request.user
 
     if not question.can_vote():
         messages.error(request, f"Poll number {question.id}"
                                 f"id not available to vote")
         return redirect("polls:index")
 
-    this_user = request.user
-    try:
-        # find a vote for this user and this question
-        vote = Vote.objects.get(user=this_user, choice__question=question)
-        # update his vote
-        vote.choice = selected_choice
-        vote.save()
-    except Vote.DoesNotExist:
-        # no matching votes - create a new vote
-        vote = Vote(user=this_user, choice=selected_choice)
-        vote.save()
-        vote = Vote.objects.create(user=this_user, choice=selected_choice)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
+
     except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
         return render(request, 'polls/detail.html', {
             'question': question,
             'error_message': "You didn't select a choice.",
         })
+
     else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        try:
+            # find a vote for this user and this question
+            vote = Vote.objects.get(user=this_user, choice__question=question)
+            # update his vote
+            vote.choice = selected_choice
+            vote.save()
+        except Vote.DoesNotExist:
+            Vote.objects.create(user=this_user, choice=selected_choice).save()
+        return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
 
+        #     # no matching votes - create a new vote
+        #     vote = Vote(user=this_user, choice=selected_choice)
+        #     vote.save()
+        #     vote = Vote.objects.create(user=this_user, choice=selected_choice)
+        #
+        # try:
+        #     selected_choice = question.choice_set.get(pk=request.POST['choice'])
+        # except (KeyError, Choice.DoesNotExist):
+        #     # Redisplay the question voting form.
+        #     return render(request, 'polls/detail.html', {
+        #         'question': question,
+        #         'error_message': "You didn't select a choice.",
+        #     })
+        # else:
+        #     selected_choice.votes += 1
+        #     selected_choice.save()
+        #     # Always return an HttpResponseRedirect after successfully dealing
+        #     # with POST data. This prevents data from being posted twice if a
+        #     # user hits the Back button.
+        #     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
-def poll_detail(request, poll_id):
-    """
-    get requests for detail page
-    """
-    poll = get_object_or_404(Question
-                             , pk=poll_id)
-    if not poll.can_vote():
-        messages.error(request, "Voting for this poll is not allowed.")
-        return HttpResponseRedirect(reverse('polls:index'))
-    return render(request, 'polls/detail.html', {'question': poll})
-
-
-# @login_required
-# def vote(request, question_id):
-#     """Vote for a choice on a question (poll)."""
-#     user = request.user
-#     if not user.is_authenticated:
-#         return redirect('login')
+# def poll_detail(request, poll_id):
+#     """
+#     get requests for detail page
+#     """
+#     poll = get_object_or_404(Question
+#                              , pk=poll_id)
+#     if not poll.can_vote():
+#         messages.error(request, "Voting for this poll is not allowed.")
+#         return HttpResponseRedirect(reverse('polls:index'))
+#     return render(request, 'polls/detail.html', {'question': poll})

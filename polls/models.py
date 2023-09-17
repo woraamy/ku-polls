@@ -10,7 +10,7 @@ class Question(models.Model):
     This class contains questions that will be shown on the web page.
     """
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published', default=timezone.now())
+    pub_date = models.DateTimeField('date published', default=timezone.now)
     end_date = models.DateTimeField('end date', null=True)
 
     def __str__(self):
@@ -36,7 +36,9 @@ class Question(models.Model):
         """
         This method is used to check if the user can vote or not.
         """
-        if self.pub_date < timezone.now() < self.end_date or self.end_date is None:
+        if self.end_date is None:
+            return True
+        elif self.pub_date < timezone.now() < self.end_date or self.end_date is None:
             return True
         return False
 
@@ -69,5 +71,11 @@ class Vote(models.Model):
     """
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        """
+        return text for vote
+        """
+        return f"{self.user.username} voted for {self.choice.choice_text}"
 
 
