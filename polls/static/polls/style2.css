@@ -1,7 +1,22 @@
 li a {
-    color: blue;
+    color: black;
 }
 
 body {
-    background: white url("images/background1.png") no-repeat;
+    background: white url("images/background6.JPG") no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    z-index: 1;
+}
+
+legend {
+    color: black;
+    font-family: Arial, sans-serif; /* Replace 'Normal' with a valid font name */
+    font-size: 20px
+}
+
+label {
+    color: black;
+    font-family: Arial, sans-serif; /* Replace 'Normal' with a valid font name */
+    font-size: 20px;
 }
