@@ -34,3 +34,9 @@ python manage.py migrate
 ```commandline
 python manage.py loaddata data/polls.json data/users.json
 ```
+
+## 5. Run tests
+* To run tests for the application, run the following command
+```commandline
+python manag.py runtest polls
+```
