@@ -38,18 +38,20 @@ class Question(models.Model):
         """
         if self.end_date is None:
             return True
-        elif self.pub_date < timezone.now() < self.end_date or self.end_date is None:
+        elif self.pub_date < timezone.now() < self.end_date \
+                or self.end_date is None:
             return True
         return False
 
 
 class Choice(models.Model):
     """
-    This class contains choices to questions and how the format will be shown on the webpage
+    This class contains choices to questions and
+    how the format will be shown on the webpage
     """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+    # votes = models.IntegerField(default=0)
 
     @property
     def votes(self):
@@ -77,5 +79,3 @@ class Vote(models.Model):
         return text for vote
         """
         return f"{self.user.username} voted for {self.choice.choice_text}"
-
-

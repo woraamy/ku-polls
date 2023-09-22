@@ -1,7 +1,28 @@
-li a {
-    color: blue;
+h1 {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+
+table {
+    color: white;
+    font-size: 20px;
+    justify-content: center;
+    margin:20px auto;
+    /*margin-right: auto;*/
+    border-collapse: collapse;
+    border-color: black;
+
 }
 
 body {
-    background: white url("images/background4.png") no-repeat;
+    background: white url("images/background7.JPG") no-repeat;
+    background-size: 100%;
+    z-index: 1;
 }
+
+.polls {
+    margin-top: 3%;
+    margin-left: 46%;
+}
+

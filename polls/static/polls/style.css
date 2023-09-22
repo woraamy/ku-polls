@@ -1,7 +1,38 @@
-li a {
-    color: blue;
+a {
+    color: black;
+    font-family: Arial, sans-serif; /* Replace 'Normal' with a valid font name */
+    font-size: 20px
+}
+
+.question-text {
+    text-align: center;
+}
+
+header {
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    border-color: black
+}
+
+.welcome {
+    color: black;
+    font-family: Verdana, sans-serif; /* Specify a valid font name */
 }
 
 body {
-    background: white url("images/background.png") no-repeat;
+    background: white url("images/background4.png") no-repeat;
+}
+
+.question-border {
+    border-color: black;
+    border-style: groove;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    border-height: 100px;
+}
+
+table {
+    margin: 0 auto;
+    width: 50%;
 }

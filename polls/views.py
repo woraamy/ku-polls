@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
@@ -21,7 +21,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             # password input field is named 'password1'
             raw_passwd = form.cleaned_data.get('password1')
-            user = authenticate(username=username,password=raw_passwd)
+            user = authenticate(username=username, password=raw_passwd)
             login(request, user)
             return redirect('polls:index')
         # what if form is not valid?
@@ -102,5 +102,5 @@ def vote(request, question_id):
             vote.save()
         except Vote.DoesNotExist:
             Vote.objects.create(user=this_user, choice=selected_choice).save()
-        return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
-
+        return HttpResponseRedirect(reverse
+                                    ("polls:results", args=(question_id,)))

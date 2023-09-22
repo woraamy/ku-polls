@@ -2,23 +2,38 @@
 
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
+<header>
+    KU-Polls
+</header>
+
+{% if user.is_authenticated %}
+   <div class="welcome">Welcome back, {{ user.username }}</div>
+{% endif %}
+
 {% if latest_question_list %}
-    <ul>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-        <a href="{% url 'polls:results' question.id %}">Results page</a>
+        <table>
+            <tr>
+                <td>
+                    <div class="question-border">
+                <a href="{% url 'polls:detail' question.id %}"><div class="question-text">☃ {{ question.question_text }} ☃
+                </div></a>
+                <a href="{% url 'polls:results' question.id %}"><div class="question-text">Results page ( •̀ᴗ•́ )و ̑̑</div></a>
+                </div></td>
+            </tr>
+
+        </table>
+
     {% endfor %}
-    </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
 
 {% if user.is_authenticated %}
-   Welcome back, {{ user.username }}
-   <a href="{% url 'logout' %}?next={{request.path}}">Logout</a>
+    <button><a href="{% url 'logout' %}?next={{request.path}}">Logout</a></button>
 {% else %}
-   Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
-       <a href="{% url 'polls:signup' %}?next={{request.path}}">Sign up</a>
+        <button><a href="{% url 'login' %}?next={{request.path}}">Login</a></button>
+        <button><a href="{% url 'polls:signup' %}?next={{request.path}}">Sign up</a></button>
 
 {% endif %}
 
