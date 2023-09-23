@@ -1,5 +1,6 @@
 ## Web Polls for KU Students
 An online survey for KU students
+[![Polls tests](https://github.com/woraamy/ku-polls/actions/workflows/python-app.yml/badge.svg)](https://github.com/woraamy/ku-polls/actions/workflows/python-app.yml)
 
 An application for conducting a poll or survey with multiple-choice questions, written in Python using Django. It is based on the [Django tutorial project][django-tutorial], and adds additional functionality.
 
