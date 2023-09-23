@@ -1,0 +1,19 @@
+li a {
+    color: blue;
+}
+
+body {
+    background: white url("images/background6.JPG") no-repeat ;
+    background-size: 100%;
+}
+
+h2 {
+    color: black;
+    font-family: Arial, sans-serif;
+
+}
+
+table {
+    color: black;
+    font-family: Arial, sans-serif;
+}
