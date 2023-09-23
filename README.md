@@ -11,7 +11,7 @@ A polls application for [Individual Software Process](https://cpske.github.io/IS
 Requires Python 3.8 or newer.  Required Python packages are listed in [requirements.txt](./requirements.txt). 
 
 ## Running the Application and Installation
-### See the Installation guide on [Installation Guide](Installation.md)
+### See the Installation guide on [How to Run](Installation.md)
 
 1. Start the server in the virtual environment. 
    ```
