@@ -18,8 +18,17 @@
                     <div class="question-border">
                 <a href="{% url 'polls:detail' question.id %}"><div class="question-text">☃ {{ question.question_text }} ☃
                 </div></a>
+
                 <a href="{% url 'polls:results' question.id %}"><div class="question-text">Results page ( •̀ᴗ•́ )و ̑̑</div></a>
+                {% if question.can_vote %}
+                    <i>Status: ✅</i><br>
+                    <i>End date: {{ question.end_date}}</i>
+                {% else %}
+                    <i>Status: ❌</i><br>
+                    <i>End date: {{ question.end_date}}</i>
+                {% endif %}
                 </div></td>
+
             </tr>
 
         </table>
