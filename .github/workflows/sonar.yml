@@ -36,13 +36,13 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Assuming you have a requirements.txt file
+          # This will now also install pytest-django from your requirements file
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install pytest pytest-cov
-
+          
       - name: Run tests with coverage
+        # The command is now simpler! The configuration is in pytest.ini
         run: |
-          DJANGO_SETTINGS_MODULE=mysite.settings pytest --cov=. --cov-report=xml
+          pytest --cov=. --cov-report=xml
 
       # --- SonarQube scanner ---
       - name: SonarQube Scan
