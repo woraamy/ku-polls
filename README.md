@@ -1,5 +1,6 @@
 ## Web Polls for KU Students
 An online survey for KU students
+[![Polls tests](https://github.com/woraamy/ku-polls/actions/workflows/python-app.yml/badge.svg)](https://github.com/woraamy/ku-polls/actions/workflows/python-app.yml)
 
 An application for conducting a poll or survey with multiple-choice questions, written in Python using Django. It is based on the [Django tutorial project][django-tutorial], and adds additional functionality.
 
@@ -9,7 +10,8 @@ A polls application for [Individual Software Process](https://cpske.github.io/IS
 
 Requires Python 3.8 or newer.  Required Python packages are listed in [requirements.txt](./requirements.txt). 
 
-## Running the Application
+## Running the Application and Installation
+### See the Installation guide on [How to Run](Installation.md)
 
 1. Start the server in the virtual environment. 
    ```
@@ -50,5 +52,6 @@ All project-related documents are in the [Project Wiki]
 - [Iteration 1 Plan](https://github.com/woraamy/ku-polls/wiki/Iteration-1-Plan) and [Task Board](https://github.com/users/woraamy/projects/2)
 - [Iteration 2 Plan](https://github.com/woraamy/ku-polls/wiki/Iteration-2-Plan) and [Task Board](https://github.com/users/woraamy/projects/2/views/3)
 - [Iteration 3 Plan](https://github.com/woraamy/ku-polls/wiki/Iteration-3-Plan) and [Task Board](https://github.com/users/woraamy/projects/2/views/4)
+- [Iteration 4 Plan](https://github.com/woraamy/ku-polls/wiki/Iteration-4-Plan) and [Task Board](https://github.com/users/woraamy/projects/2/views/5)
 
 [django-tutorial]: https://docs.djangoproject.com/en/3.1/intro/tutorial01/

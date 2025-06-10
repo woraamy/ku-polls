@@ -1,5 +1,7 @@
+{% load static %}
 <html>
 <head>
+    <link rel="stylesheet" href="{% static 'polls/login_style.css' %}">
     <title>Please Login</title>
 </head>
 <body>
@@ -12,6 +14,7 @@
   </p>
   <input type="hidden" name="next" value="{{next}}"/>
  </form>
+<button><a href="{% url 'polls:signup' %}?next={{request.path}}">Sign up</a></button>
  {# If you have a sign-up page, then add a link here #}
 </body>
 </html>

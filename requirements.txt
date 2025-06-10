@@ -1,2 +1,4 @@
+# Packages required for this application
+
 Django~=4.2.4
 python-decouple

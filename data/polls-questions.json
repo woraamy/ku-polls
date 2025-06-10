@@ -1,0 +1,29 @@
+[
+{
+  "model": "polls.question",
+  "pk": 1,
+  "fields": {
+    "question_text": "What is your favorite genre of music?",
+    "pub_date": "2023-09-19T15:02:27.012Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 2,
+  "fields": {
+    "question_text": "How is school going so far?",
+    "pub_date": "2023-09-19T15:04:43.039Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "question_text": "What is your favorite drinking water brand",
+    "pub_date": "2023-09-22T13:36:00Z",
+    "end_date": "2023-10-30T13:37:51Z"
+  }
+}
+]
