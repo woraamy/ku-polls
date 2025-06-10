@@ -1,0 +1,52 @@
+# .github/workflows/sonar.yml
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  sonarQube:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17  # adjust if you use a different JDK version
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Python 3.11  # if using Python (remove if not needed)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # --- Run your tests and generate code coverage report here ---
+      # Example for Python with pytest + coverage:
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Run tests with coverage
+        run: |
+          pytest --cov=. --cov-report=xml
+
+      # --- SonarQube scanner ---
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
+        with:
+          projectBaseDir: .
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # your SonarQube server URL
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
