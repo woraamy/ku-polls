@@ -48,5 +48,5 @@ jobs:
         with:
           projectBaseDir: .
         env:
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # your SonarQube server URL
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
