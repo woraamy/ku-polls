@@ -138,4 +138,3 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DJANGO_SETTINGS_MODULE = 'mysite.settings pytest --cov=. --cov-report=xml'
